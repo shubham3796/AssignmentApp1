@@ -62,18 +62,42 @@
 		A63C206224D40C7F00EA7852 /* AzureBooks */ = {
 			isa = PBXGroup;
 			children = (
-				A63C206324D40C7F00EA7852 /* AppDelegate.swift */,
-				A63C206524D40C7F00EA7852 /* SceneDelegate.swift */,
-				A63C206924D40C7F00EA7852 /* Main.storyboard */,
-				A63C206C24D40C8000EA7852 /* Assets.xcassets */,
-				A63C206E24D40C8000EA7852 /* LaunchScreen.storyboard */,
 				A63C207124D40C8000EA7852 /* Info.plist */,
-				A63C207724D4228600EA7852 /* BooksTableViewCell.swift */,
-				A63C207924D424F900EA7852 /* Book.swift */,
-				A63C207B24D425CB00EA7852 /* BooksTableViewController.swift */,
-				A6AF1AA024D580C5001E0462 /* BookDetailsViewController.swift */,
+				A6879EC924D837CD00B6CCB5 /* Model */,
+				A6879ECA24D837DF00B6CCB5 /* ViewControllers */,
+				A6879ECB24D8382B00B6CCB5 /* MISC */,
 			);
 			path = AzureBooks;
+			sourceTree = "<group>";
+		};
+		A6879EC924D837CD00B6CCB5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A63C207924D424F900EA7852 /* Book.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A6879ECA24D837DF00B6CCB5 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A63C207B24D425CB00EA7852 /* BooksTableViewController.swift */,
+				A6AF1AA024D580C5001E0462 /* BookDetailsViewController.swift */,
+				A63C207724D4228600EA7852 /* BooksTableViewCell.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		A6879ECB24D8382B00B6CCB5 /* MISC */ = {
+			isa = PBXGroup;
+			children = (
+				A63C206C24D40C8000EA7852 /* Assets.xcassets */,
+				A63C206E24D40C8000EA7852 /* LaunchScreen.storyboard */,
+				A63C206924D40C7F00EA7852 /* Main.storyboard */,
+				A63C206324D40C7F00EA7852 /* AppDelegate.swift */,
+				A63C206524D40C7F00EA7852 /* SceneDelegate.swift */,
+			);
+			path = MISC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
