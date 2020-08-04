@@ -3,11 +3,11 @@ import UIKit
 class BooksTableViewController: UITableViewController {
     
     //MARK: Properties
-    
-    private let azureBooksURL = "https://fakerestapi.azurewebsites.net/api/Books"
     private var books = [Book]()
     private var book = Book()
-    
+    private var bookCell = BooksTableViewCell()
+    private let azureBooksURL = "https://fakerestapi.azurewebsites.net/api/Books"
+    //private var networkManager = NetworkManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,13 +28,9 @@ class BooksTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath) as! BooksTableViewCell
-
         // Configure the cell...
-        cell.bookNameLabel.text = books[indexPath.row].title
-        cell.descriptionLabel.text = books[indexPath.row].description
-        
+        let cell = bookCell.configure(tableView, indexPath, books) as! BooksTableViewCell
+
         return cell
     }
     
@@ -50,7 +46,6 @@ class BooksTableViewController: UITableViewController {
         if segue.identifier == "showBookDetails" {
             if let destinationVC = segue.destination as? BookDetailsViewController {
                 destinationVC.book = self.book
-                print(book)
             }
         }
     }
@@ -66,65 +61,41 @@ class BooksTableViewController: UITableViewController {
         var postRequest = URLRequest(url: booksUrl)
         postRequest.httpMethod = "GET"
         let task = URLSession.shared.dataTask(with: postRequest) { (data, response, error) in
-            
+
             if let error = error {
                 print(error)
                 return
             }
-            
+
             //Parse JSON data
             if let data = data{
                 self.books = self.parseJsonData(data: data)
-                
+
                 //Reload table view
-                OperationQueue.main.addOperation {
-                    self.tableView.reloadData()
-                }
+                self.reloadTableView()
             }
         }
         task.resume()
     }
     
+    func reloadTableView(){
+        OperationQueue.main.addOperation {
+            self.tableView.reloadData()
+        }
+    }
+
     //JSON parcing
     func parseJsonData(data: Data) -> [Book]{
         var booksList = [Book]()
-        
+
         let decoder = JSONDecoder()
-        
+
         do{
             booksList = try decoder.decode([Book].self, from: data)
         } catch {
             print(error)
         }
         return booksList
-        
-//The following code can be used instead of above code, when we want to parse JSON without using the Codable protocol
-        
-        
-//        do{
-//
-//            let jsonResult = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSArray
-//
-//            //Parse JSON data
-//
-//            //convert NSArray to swift array
-//            let mutableArrayOfBooks = NSMutableArray(array: jsonResult ?? [])
-//            let jsonBooks = mutableArrayOfBooks as! [[String:AnyObject]]
-//
-//            for jsonBook in jsonBooks {
-//                var book = Book()
-//                book.id = jsonBook["ID"] as! Int
-//                book.title = jsonBook["Title"] as! String
-//                book.description = jsonBook["Description"] as! String
-//                book.excerpt = jsonBook["Excerpt"] as! String
-//                book.pageCount = jsonBook["PageCount"] as! Int
-//                book.publishDate = jsonBook["PublishDate"] as! String
-//                books.append(book)
-//            }
-//        } catch{
-//            print(error)
-//        }
-//        return books
     }
     
 }

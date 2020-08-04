@@ -4,12 +4,12 @@ class BookDetailsViewController: UIViewController {
 
     //MARK: Properties
     
-    @IBOutlet weak var IdLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var pageCountLabel: UILabel!
-    @IBOutlet weak var publishDateLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var excerptLabel: UILabel!
+    @IBOutlet weak private var IdLabel: UILabel!
+    @IBOutlet weak private var titleLabel: UILabel!
+    @IBOutlet weak private var pageCountLabel: UILabel!
+    @IBOutlet weak private var publishDateLabel: UILabel!
+    @IBOutlet weak private var descriptionLabel: UILabel!
+    @IBOutlet weak private var excerptLabel: UILabel!
     
     var book = Book()
     
@@ -17,6 +17,7 @@ class BookDetailsViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        
         IdLabel.text = "\(book.id)"
         titleLabel.text = book.title
         pageCountLabel.text = "\(book.pageCount)"

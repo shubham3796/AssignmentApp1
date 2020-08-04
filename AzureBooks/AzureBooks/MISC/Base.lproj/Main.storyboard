@@ -76,16 +76,16 @@
             </objects>
             <point key="canvasLocation" x="486.95652173913049" y="-7.3660714285714279"/>
         </scene>
-        <!--Book Details View Controller-->
+        <!--BookDetails-->
         <scene sceneID="lEM-gv-eRL">
             <objects>
-                <viewController id="dgT-Zi-S03" customClass="BookDetailsViewController" customModule="AzureBooks" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BookDetails" title="BookDetails" id="dgT-Zi-S03" customClass="BookDetailsViewController" customModule="AzureBooks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ygg-HV-N2b">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="clK-CM-tHg">
-                                <rect key="frame" x="20" y="263" width="374" height="253"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="clK-CM-tHg">
+                                <rect key="frame" x="20" y="98" width="374" height="754"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7RS-3H-5Ae">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="24"/>
@@ -207,11 +207,11 @@
                                             <constraint firstAttribute="trailing" secondItem="obE-Pk-vsF" secondAttribute="trailing" constant="190" id="iTs-2D-9PX"/>
                                         </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="123" translatesAutoresizingMaskIntoConstraints="NO" id="8oL-ds-gBR">
-                                        <rect key="frame" x="0.0" y="203" width="374" height="50"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="123" translatesAutoresizingMaskIntoConstraints="NO" id="8oL-ds-gBR">
+                                        <rect key="frame" x="0.0" y="203" width="374" height="551"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="68" translatesAutoresizingMaskIntoConstraints="NO" id="CCp-zl-PU1">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="68" translatesAutoresizingMaskIntoConstraints="NO" id="CCp-zl-PU1">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="551"/>
                                             </stackView>
                                         </subviews>
                                     </stackView>
@@ -223,6 +223,7 @@
                             <constraint firstItem="clK-CM-tHg" firstAttribute="leading" secondItem="PLu-nW-DMX" secondAttribute="leading" constant="20" id="HJa-YM-E6w"/>
                             <constraint firstItem="PLu-nW-DMX" firstAttribute="trailing" secondItem="clK-CM-tHg" secondAttribute="trailing" constant="20" id="Jx1-yG-rwS"/>
                             <constraint firstItem="clK-CM-tHg" firstAttribute="top" secondItem="PLu-nW-DMX" secondAttribute="top" constant="10" id="a6S-iD-Sue"/>
+                            <constraint firstItem="PLu-nW-DMX" firstAttribute="bottom" secondItem="clK-CM-tHg" secondAttribute="bottom" constant="10" id="bJt-Oy-9GE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PLu-nW-DMX"/>
                     </view>
