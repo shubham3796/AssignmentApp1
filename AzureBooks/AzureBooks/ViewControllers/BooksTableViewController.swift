@@ -6,13 +6,27 @@ class BooksTableViewController: UITableViewController {
     private var books = [Book]()
     private var book = Book()
     private var bookCell = BooksTableViewCell()
-    private let azureBooksURL = "https://fakerestapi.azurewebsites.net/api/Books"
-    //private var networkManager = NetworkManager()
+    private var networkManager = NetworkManager()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "booksFetching"),
+                                               object: nil,
+                                               queue: nil,
+                                               using: doOnFetchingBooks)
+        //Fetch books from API
+        networkManager.getBooks()
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        getBooks()
+    }
+    
+    //MARK: Handle Notification
+    func doOnFetchingBooks(notification:Notification){
+        guard let fetchedBooks = notification.userInfo!["fetchedBooks"] else {return}
+        self.books = fetchedBooks as! [Book]
+        self.reloadTableView()
     }
 
     // MARK: - Table view data source
@@ -50,52 +64,9 @@ class BooksTableViewController: UITableViewController {
         }
     }
 
-    
-    
-    //MARK: DATA FETCHING
-    // API calling
-    func getBooks(){
-        guard let booksUrl = URL(string: azureBooksURL) else{
-            return
-        }
-        var postRequest = URLRequest(url: booksUrl)
-        postRequest.httpMethod = "GET"
-        let task = URLSession.shared.dataTask(with: postRequest) { (data, response, error) in
-
-            if let error = error {
-                print(error)
-                return
-            }
-
-            //Parse JSON data
-            if let data = data{
-                self.books = self.parseJsonData(data: data)
-
-                //Reload table view
-                self.reloadTableView()
-            }
-        }
-        task.resume()
-    }
-    
     func reloadTableView(){
         OperationQueue.main.addOperation {
             self.tableView.reloadData()
         }
-    }
-
-    //JSON parcing
-    func parseJsonData(data: Data) -> [Book]{
-        var booksList = [Book]()
-
-        let decoder = JSONDecoder()
-
-        do{
-            booksList = try decoder.decode([Book].self, from: data)
-        } catch {
-            print(error)
-        }
-        return booksList
-    }
-    
+    }    
 }
