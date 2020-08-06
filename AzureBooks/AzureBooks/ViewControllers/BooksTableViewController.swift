@@ -3,8 +3,9 @@ import UIKit
 class BooksTableViewController: UITableViewController {
     
     //MARK: Properties
-    private var books = [Book]()
-    private var book = Book()
+    private var books: [Book]?
+    private var book: Book?
+    //Objects of other classes
     private var bookCell = BooksTableViewCell()
     private var networkManager = NetworkManager()
     
@@ -24,8 +25,9 @@ class BooksTableViewController: UITableViewController {
     
     //MARK: Handle Notification
     func doOnFetchingBooks(notification:Notification){
-        guard let fetchedBooks = notification.userInfo!["fetchedBooks"] else {return}
-        self.books = fetchedBooks as! [Book]
+        guard let fetchedBooks = notification.userInfo!["fetchedBooks"] else {books = [Book]()
+            return}
+        self.books = fetchedBooks as? [Book]
         self.reloadTableView()
     }
 
@@ -36,21 +38,21 @@ class BooksTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return books.count
+        return books?.count ?? 0
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // Configure the cell...
-        let cell = bookCell.configure(tableView, indexPath, books) as! BooksTableViewCell
+        let cell = bookCell.configure(tableView, indexPath, books ?? [Book]()) as! BooksTableViewCell
 
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        // tableView.deselectRow(at: indexPath, animated: true)
-        book = books[indexPath.row]
+        book = books?[indexPath.row]
         let cell = tableView.cellForRow(at: indexPath)
         performSegue(withIdentifier: "showBookDetails", sender: cell)
     }

@@ -11,19 +11,19 @@ class BookDetailsViewController: UIViewController {
     @IBOutlet weak private var descriptionLabel: UILabel!
     @IBOutlet weak private var excerptLabel: UILabel!
     
-    var book = Book()
+    var book: Book?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         
-        IdLabel.text = "\(book.id)"
-        titleLabel.text = book.title
-        pageCountLabel.text = "\(book.pageCount)"
-        publishDateLabel.text = book.publishDate
-        descriptionLabel.text = book.description
-        excerptLabel.text = book.excerpt
+        IdLabel.text = "\(book?.id ?? 0)"
+        titleLabel.text = book?.title
+        pageCountLabel.text = "\(book?.pageCount ?? 0)"
+        publishDateLabel.text = book?.publishDate
+        descriptionLabel.text = book?.description
+        excerptLabel.text = book?.excerpt
     }
    
 }

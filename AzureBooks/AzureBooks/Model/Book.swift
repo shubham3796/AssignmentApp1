@@ -1,12 +1,12 @@
 import Foundation
 
 struct Book: Codable{
-    var id = 0
-    var title = ""
-    var description = ""
-    var pageCount = 0
-    var excerpt = ""
-    var publishDate = "2020-07-31T09:35:32.233Z"
+    let id: Int
+    let title: String
+    let description: String
+    let pageCount: Int
+    let excerpt: String
+    let publishDate: String
     
     
     enum CodingKeys: String, CodingKey {
@@ -17,4 +17,14 @@ struct Book: Codable{
         case excerpt = "Excerpt"
         case publishDate = "PublishDate"
     }
+    
+    init(id: Int, title: String, description: String, pageCount: Int, excerpt: String, publishDate: String){
+        self.id = id
+        self.title = title
+        self.description = description
+        self.pageCount = pageCount
+        self.excerpt = excerpt
+        self.publishDate = publishDate
+    }
+   
 }
