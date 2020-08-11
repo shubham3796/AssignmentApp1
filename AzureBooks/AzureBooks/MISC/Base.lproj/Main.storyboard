@@ -69,6 +69,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="hVj-iJ-la4"/>
                     <connections>
+                        <outlet property="booksTableView" destination="9RY-X3-Tgd" id="qvQ-VM-Fif"/>
                         <segue destination="dgT-Zi-S03" kind="show" identifier="showBookDetails" id="I9p-CY-bTF"/>
                     </connections>
                 </tableViewController>

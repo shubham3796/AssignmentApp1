@@ -1,11 +1,46 @@
 import Foundation
 
-class NetworkManager{
+var books = [Book]()
+
+class BooksTableViewModel{
     //MARK: Properties
     private let azureBooksURL = "https://fakerestapi.azurewebsites.net/api/Books"
-    private var books: [Book]?
+
+    var index: Int
     
-   // DATA FETCHING
+    init(index: Int){
+        self.index = index
+    }
+    
+    public var presentBook: Book{
+        return books[index]
+    }
+    
+    public var id: String{
+        return "\(books[index].id)"
+    }
+    
+    public var title: String{
+        return books[index].title
+    }
+    
+    public var description: String{
+        return books[index].description
+    }
+    
+    public var pageCount: String{
+        return "\(books[index].pageCount)"
+    }
+    
+    public var excerpt: String{
+        return books[index].excerpt
+    }
+    
+    public var publishDate: String{
+        return books[index].publishDate
+    }
+    
+    // DATA FETCHING
     //MARK: API calling
     func getBooks(completion: @escaping ([Book])->Void) {
         guard let booksUrl = URL(string: azureBooksURL) else{
@@ -22,8 +57,8 @@ class NetworkManager{
             
             //Parse JSON data
             if let data = data{
-                self.books = self.parseJsonData(data: data)
-                completion(self.books ?? [Book]())
+                books = self.parseJsonData(data: data)
+                completion(books)
             }
         }
         task.resume()
@@ -43,6 +78,5 @@ class NetworkManager{
         return booksList
         
     }
-
+    
 }
-
